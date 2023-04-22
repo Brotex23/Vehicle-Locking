@@ -44,6 +44,12 @@ function ToggleVehicleLock()
 	Citizen.CreateThread(function()
 		StartWorkaroundTask()
 	end)
+	
+	RequestAnimDict('anim@mp_player_intmenu@key_fob@')
+        while not HasAnimDictLoaded('anim@mp_player_intmenu@key_fob@') do
+        Citizen.Wait(0)
+        end
+        TaskPlayAnim(PlayerPedId(), 'anim@mp_player_intmenu@key_fob@' , 'fob_click' ,8.0, 8.0, 1820, 49, false, false, false)
 
 	if IsPedInAnyVehicle(playerPed, false) then
 		vehicle = GetVehiclePedIsIn(playerPed, false)
